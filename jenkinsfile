@@ -1,9 +1,23 @@
-node{
-    stage('git clone'){
-        git credentialsId: 'git_credientials', url: 'https://github.com/Shaiknayeem753/mavenrepo.git'
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        
+        stage('git clone') {
+            steps {
+                git changelog: false, poll: false, url: 'https://github.com/Shaiknayeem753/mavenrepo.git'
+            }
+        }
+        stage('biuld') {
+            steps {
+               sh 'mvn package'
+            }
+        }
     }
-    stage('code build'){
-        sh 'mvn package'
-    }
-}    
-    
+        
+}
