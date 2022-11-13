@@ -1,0 +1,9 @@
+node{
+    stage('git clone'){
+        git credentialsId: 'git_credientials', url: 'https://github.com/Shaiknayeem753/mavenrepo.git'
+    }
+    stage('code build'){
+        sh 'mvn package'
+    }
+}    
+    
